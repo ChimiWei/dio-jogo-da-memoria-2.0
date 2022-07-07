@@ -11,6 +11,16 @@ body {
     background-color: rgb(52, 180, 180);
 }
 
+.container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+
+    margin-bottom: auto;
+}
+
 .memory-game {
     height: 640px;
     width: 640px;
@@ -21,6 +31,7 @@ body {
 }
 
 .card {
+    flex: auto;
     height: calc( 33.333% - 10px);
     width: calc(25% - 10px);
     margin: 5px;

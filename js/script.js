@@ -3,6 +3,7 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 
+
 function flipCard() {
     if(lockBoard) return;
     if(this === firstCard) return;
@@ -32,7 +33,10 @@ function checkForMath() {
 function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
+    firstCard.classList.add('matched')
+    secondCard.classList.add('matched')
     resetBoard()
+    checkGameOver()
 }
 
 function unflipCards() {
@@ -51,6 +55,36 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
+function checkGameOver() {
+    for(let card of cards) {
+        if (!card.classList.contains('matched')) return
+    }
+    lockBoard = true
+    setTimeout(() => {
+        cards.forEach(function(card, index) {
+            setTimeout(function() {
+                card.addEventListener('click', flipCard)
+                card.classList.remove('matched')
+                card.classList.remove('flip')
+                
+            }, 500 * index)
+        })
+    }, 2000)
+
+    setTimeout(() => {
+        shuffle()
+    }, 8500)
+
+}
+
+function shuffle() {
+    lockBoard = false
+    cards.forEach((card) => {
+        let randomPosition = Math.floor(Math.random() * 12);
+        card.style.order = randomPosition
+    })
+}
+
 (function shuffle() {
     lockBoard = false
     cards.forEach((card) => {
@@ -62,3 +96,4 @@ function resetBoard() {
 cards.forEach((card) => {
     card.addEventListener('click', flipCard)
 })
+
