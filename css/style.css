@@ -8,7 +8,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-color: rgb(52, 180, 180);
+    background-color: rgba(156, 51, 151, 0.842);
 }
 
 .container {
